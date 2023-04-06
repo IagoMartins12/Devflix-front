@@ -17,13 +17,12 @@ const HeaderAuth = () => {
 
     const handleSearch = async (event: FormEvent <HTMLFormElement>) => {
         event.preventDefault()
-
-        router.push(`search?name=${searchName}`)
+        router.push(`/search?name=${searchName}`)
         setSearchName("")
     }
 
     const handleSearchClick = () =>{
-        router.push(`search?name=${searchName}`)
+        router.push(`/search?name=${searchName}`)
         setSearchName("")
     }
 
@@ -53,7 +52,7 @@ const HeaderAuth = () => {
         <>
         <Container className={styles.nav}>
             <Link href="/home">
-                <img src="logos/logoSemBackground.png" alt="logoDevflix" className={styles.imgLogoNav} />
+                <img src="/logos/logoSemBackground.png" alt="logoDevflix" className={styles.imgLogoNav} />
             </Link>
             <div className="d-flex align-items-center ">
                 <Form onSubmit={handleSearch}>

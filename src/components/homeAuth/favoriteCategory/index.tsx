@@ -16,7 +16,7 @@ const FavoriteCategory = () => {
         <>
         <Container className='d-flex flex-column align-items-center pt-5'>
             <p className={styles.titleCategory}>MEUS FAVORITOS </p>
-            {data.data.courses.lenght >= 1 ? (
+            {data.data.courses.length>= 1 ? (
                 <SlideComponent course={data.data.courses}/>
             ) : (
                 <p className='text-center pt-4 h4'> <strong> Você não tem nenhum curso na lista! </strong></p>

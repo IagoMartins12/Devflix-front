@@ -13,7 +13,7 @@ const HeaderGeneric = ({ logoUrl, btnUrl, btnContent} : props) => {
         <div className={styles.header}>
             <Container className={styles.headerContainer}>
                 <Link href= {logoUrl}>
-                    <img src="logos/logoSemBackground.png" alt="logoDevflix" className={styles.headerLogo} />
+                    <img src="/logos/logoSemBackground.png" alt="logoDevflix" className={styles.headerLogo} />
                 </Link>
                 <Link href= {btnUrl}>
                     <Button outline color='light' className={styles.headerBtn}> {btnContent} </Button>

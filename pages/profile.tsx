@@ -3,14 +3,29 @@ import HeaderAuth from "@/src/components/commom/headerAuth";
 import PasswordForm from "@/src/components/profile/password";
 import UserForm from "@/src/components/profile/user";
 import Head from "next/head";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Col, Container, Row } from "reactstrap";
 import styles from "../styles/profile.module.scss"
+import PageSpinner from "@/src/components/commom/spinner";
+import { useRouter } from "next/router";
 
 const UserInfo = () => {
 
     const [form, setForm] = useState("userForm")
+    const router = useRouter()
+    const [loading, setLoading] = useState(true)
 
+    useEffect(() => {
+        if (!sessionStorage.getItem('devflix-token')){
+            router.push("/login")
+        } else {
+            setLoading(false)
+        }
+    }, [])
+
+    if (loading){
+        return <PageSpinner/>
+    }
 
     return (
         <>

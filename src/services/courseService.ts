@@ -42,6 +42,20 @@ const courseService = {
         return res;
     },
     
+    getFavCourses :async () => {
+        const token = sessionStorage.getItem("devflix-token");
+
+        const res = await api.get("/favorites", {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        }).catch( error => {
+            return error.response 
+        } )
+
+        return res
+    }, 
+
     addToFav:async (courseId: number | string) => {
         const token = sessionStorage.getItem("devflix-token");
 
@@ -59,11 +73,10 @@ const courseService = {
     removeFav:async (courseId: number | string) => {
         const token = sessionStorage.getItem("devflix-token");
 
-        const res = await api.delete("/favorites", {
+        const res = await api.delete(`/favorites/${courseId}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
-            data: {courseId}
         }).catch( error => {
             return error.response 
         } )
@@ -71,10 +84,24 @@ const courseService = {
         return res
     }, 
 
-    getFavCourses :async () => {
+    like :async (courseId: number | string) => {
         const token = sessionStorage.getItem("devflix-token");
 
-        const res = await api.get("/favorites", {
+        const res = await api.post("/likes/", {courseId}, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        }).catch( error => {
+            return error.response 
+        } )
+
+        return res
+    }, 
+
+    removeLike :async (courseId: number | string) => {
+        const token = sessionStorage.getItem("devflix-token");
+
+        const res = await api.delete(`/likes/${courseId}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
@@ -97,7 +124,21 @@ const courseService = {
         } )
 
         return res
-    }
+    }, 
+
+    getEpisodes: async (id: number | string) => {
+        const token = sessionStorage.getItem("devflix-token");
+
+        const res = await api.get(`/courses/${id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        }).catch( error => {
+            return error.response 
+        } )
+
+        return res
+    }, 
 }
 
 export default courseService
